@@ -24,6 +24,7 @@ mesh = SubResource("CapsuleMesh_25ila")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.281386, -0.612657)
+visible = false
 mesh = SubResource("BoxMesh_pvf2p")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
@@ -71,6 +72,8 @@ text = "W"
 [node name="btn_backward" type="Button" parent="SubViewportContainer/SubViewport/VBoxContainer"]
 layout_mode = 2
 text = "S"
+
+[node name="Camera3D" type="Camera3D" parent="."]
 
 [connection signal="pressed" from="SubViewportContainer/SubViewport/VBoxContainer/HBoxContainer/btn_left" to="." method="_on_btn_left_pressed"]
 [connection signal="pressed" from="SubViewportContainer/SubViewport/VBoxContainer/HBoxContainer/btn_right" to="." method="_on_btn_right_pressed"]

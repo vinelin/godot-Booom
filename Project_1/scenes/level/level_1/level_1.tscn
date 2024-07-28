@@ -20,6 +20,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_5wb3e")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.241887, 0.388946, -0.888939, 0.00146826, 0.915996, 0.401184, 0.970303, -0.0983462, 0.220996, -15.5234, 11.885, 0.0165192)
