@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmdvyspy6prrm"]
+[gd_scene load_steps=8 format=3 uid="uid://dmdvyspy6prrm"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_8d4x2"]
+[ext_resource type="Shader" path="res://shaders/CRT.gdshader" id="2_obkwn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ih4k0"]
 
@@ -12,6 +13,23 @@ albedo_color = Color(1, 0.12549, 0.172549, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_pvf2p"]
 material = SubResource("StandardMaterial3D_uxsxn")
 size = Vector3(0.5, 0.5, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rrwot"]
+shader = ExtResource("2_obkwn")
+shader_parameter/resolution = Vector2(320, 180)
+shader_parameter/scan_line_amount = 1.0
+shader_parameter/warp_amount = 0.1
+shader_parameter/noise_amount = 0.03
+shader_parameter/interference_amount = 0.2
+shader_parameter/grille_amount = 0.1
+shader_parameter/grille_size = 1.0
+shader_parameter/vignette_amount = 0.6
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/aberation_amount = 0.5
+shader_parameter/roll_line_amount = 0.3
+shader_parameter/roll_speed = 1.0
+shader_parameter/scan_line_strength = -8.0
+shader_parameter/pixel_strength = -2.0
 
 [node name="player" type="CharacterBody3D"]
 script = ExtResource("1_8d4x2")
@@ -26,6 +44,16 @@ mesh = SubResource("CapsuleMesh_25ila")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.281386, -0.612657)
 visible = false
 mesh = SubResource("BoxMesh_pvf2p")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_rrwot")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 anchors_preset = 15
@@ -72,8 +100,6 @@ text = "W"
 [node name="btn_backward" type="Button" parent="SubViewportContainer/SubViewport/VBoxContainer"]
 layout_mode = 2
 text = "S"
-
-[node name="Camera3D" type="Camera3D" parent="."]
 
 [connection signal="pressed" from="SubViewportContainer/SubViewport/VBoxContainer/HBoxContainer/btn_left" to="." method="_on_btn_left_pressed"]
 [connection signal="pressed" from="SubViewportContainer/SubViewport/VBoxContainer/HBoxContainer/btn_right" to="." method="_on_btn_right_pressed"]
