@@ -1,10 +1,10 @@
 extends Control
 
-@onready var MasterVolumeSlider: HSlider = $MarginContainer/VBoxOptions/VBoxVolume/slider_master
-@onready var MusicVolumeSlider: HSlider = $MarginContainer/VBoxOptions/VBoxVolume/slider_music
-@onready var sfxVolumeSlider: HSlider = $MarginContainer/VBoxOptions/VBoxVolume/slider_sfx
+@onready var MasterVolumeSlider: HSlider = $MarginContainer/TabContainer/VBoxOptions/VBoxVolume/slider_master
+@onready var MusicVolumeSlider: HSlider = $MarginContainer/TabContainer/VBoxOptions/VBoxVolume/slider_music
+@onready var sfxVolumeSlider: HSlider = $MarginContainer/TabContainer/VBoxOptions/VBoxVolume/slider_sfx
 
-@onready var sfx_pressed: AudioStreamPlayer = $MarginContainer/VBoxOptions/sfx_pressed
+@onready var sfx_pressed: AudioStreamPlayer = $MarginContainer/TabContainer/VBoxOptions/sfx_pressed
 
 
 func _ready():
