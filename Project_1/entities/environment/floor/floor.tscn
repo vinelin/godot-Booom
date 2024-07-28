@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://ch5p3jyloybup"]
+
+[ext_resource type="Texture2D" uid="uid://dgh1fpgfwc5yn" path="res://entities/environment/floor/temp_1.jpg" id="1_n2dl2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qv636"]
+albedo_texture = ExtResource("1_n2dl2")
+
+[node name="floor" type="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6, 0)
+material_override = SubResource("StandardMaterial3D_qv636")
+use_collision = true
+size = Vector3(10, 0.002, 10)

@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://dc6xclnxma74t"]
+
+[ext_resource type="Texture2D" uid="uid://dgh1fpgfwc5yn" path="res://entities/environment/floor/temp_1.jpg" id="1_13ai3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5w7d0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_leyff"]
+albedo_texture = ExtResource("1_13ai3")
+
+[sub_resource type="BoxMesh" id="BoxMesh_4rc43"]
+
+[node name="wall_test" type="RigidBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_5w7d0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_leyff")
+mesh = SubResource("BoxMesh_4rc43")

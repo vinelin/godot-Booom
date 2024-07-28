@@ -1,0 +1,78 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmdvyspy6prrm"]
+
+[ext_resource type="Script" path="res://entities/player/player.gd" id="1_8d4x2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ih4k0"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_25ila"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uxsxn"]
+albedo_color = Color(1, 0.12549, 0.172549, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pvf2p"]
+material = SubResource("StandardMaterial3D_uxsxn")
+size = Vector3(0.5, 0.5, 1)
+
+[node name="player" type="CharacterBody3D"]
+script = ExtResource("1_8d4x2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_ih4k0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_25ila")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.281386, -0.612657)
+mesh = SubResource("BoxMesh_pvf2p")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -29.0
+offset_top = -101.0
+offset_right = 29.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SubViewportContainer/SubViewport/VBoxContainer"]
+layout_mode = 2
+
+[node name="btn_left" type="Button" parent="SubViewportContainer/SubViewport/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "<<"
+
+[node name="btn_right" type="Button" parent="SubViewportContainer/SubViewport/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = ">>"
+
+[node name="btn_forward" type="Button" parent="SubViewportContainer/SubViewport/VBoxContainer"]
+layout_mode = 2
+text = "W"
+
+[node name="btn_backward" type="Button" parent="SubViewportContainer/SubViewport/VBoxContainer"]
+layout_mode = 2
+text = "S"
+
+[connection signal="pressed" from="SubViewportContainer/SubViewport/VBoxContainer/HBoxContainer/btn_left" to="." method="_on_btn_left_pressed"]
+[connection signal="pressed" from="SubViewportContainer/SubViewport/VBoxContainer/HBoxContainer/btn_right" to="." method="_on_btn_right_pressed"]
+[connection signal="pressed" from="SubViewportContainer/SubViewport/VBoxContainer/btn_forward" to="." method="_on_btn_forward_pressed"]
+[connection signal="pressed" from="SubViewportContainer/SubViewport/VBoxContainer/btn_backward" to="." method="_on_btn_backward_pressed"]

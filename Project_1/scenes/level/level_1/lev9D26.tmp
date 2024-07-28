@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://c1mpy5lsi3mde"]
+
+[ext_resource type="Script" path="res://scenes/level/level_1/level_1.gd" id="1_56ln1"]
+[ext_resource type="PackedScene" uid="uid://dmdvyspy6prrm" path="res://entities/player/player.tscn" id="1_67t1i"]
+[ext_resource type="PackedScene" uid="uid://dc6xclnxma74t" path="res://entities/environment/wall_test/wall_test.tscn" id="2_f35cv"]
+[ext_resource type="PackedScene" uid="uid://ch5p3jyloybup" path="res://entities/environment/floor/floor.tscn" id="3_3rsr6"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p06cv"]
+
+[sub_resource type="Sky" id="Sky_ta0we"]
+sky_material = SubResource("ProceduralSkyMaterial_p06cv")
+
+[sub_resource type="Environment" id="Environment_5wb3e"]
+background_mode = 2
+sky = SubResource("Sky_ta0we")
+
+[node name="level_1" type="Node3D"]
+script = ExtResource("1_56ln1")
+
+[node name="player" parent="." instance=ExtResource("1_67t1i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="wall_test" parent="." instance=ExtResource("2_f35cv")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.51074, 0, -10.7619)
+
+[node name="wall_test2" parent="." instance=ExtResource("2_f35cv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.23041, 0, -4.41143)
+
+[node name="wall_test3" parent="." instance=ExtResource("2_f35cv")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.593, 0, 7.10259)
+
+[node name="wall_test4" parent="." instance=ExtResource("2_f35cv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.98643, 0, 4.09718)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_5wb3e")
+
+[node name="floor" parent="." instance=ExtResource("3_3rsr6")]
+
+[node name="floor2" parent="." instance=ExtResource("3_3rsr6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -1.6, 0)
+
+[node name="floor3" parent="." instance=ExtResource("3_3rsr6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6, 10)
+
+[node name="floor4" parent="." instance=ExtResource("3_3rsr6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6, -10)
+
+[node name="floor5" parent="." instance=ExtResource("3_3rsr6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -1.6, 0)

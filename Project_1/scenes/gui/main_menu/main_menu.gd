@@ -15,6 +15,7 @@ func _ready():
 
 func _on_btn_play_pressed():
 	sfx_pressed.play()
+	get_tree().change_scene_to_file("res://scenes/level/level_1/level_1.tscn")
 
 func _on_btn_options_pressed():
 	sfx_pressed.play()
