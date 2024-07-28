@@ -11,6 +11,7 @@ func opening():
 	get_tree().change_scene_to_file("res://scenes/gui/main_menu/main_menu.tscn")
 	anim_player.play("disappear")
 	await anim_player.animation_finished
+	Music.play("bgm_manu.mp3", true)
 	self.queue_free()
 
 func change_scene(target: String):
