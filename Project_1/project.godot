@@ -22,6 +22,7 @@ config/icon="res://icon.svg"
 
 SceneTransition="*res://globals/transitions/scene_transition.tscn"
 Music="*res://globals/Music/music.tscn"
+Main="*res://globals/scripts/main.gd"
 
 [input]
 
