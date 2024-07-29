@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmdvyspy6prrm"]
+[gd_scene load_steps=8 format=3 uid="uid://dmdvyspy6prrm"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_8d4x2"]
 [ext_resource type="Shader" path="res://shaders/CRT.gdshader" id="2_obkwn"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ih4k0"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_25ila"]
 
@@ -31,6 +33,9 @@ shader_parameter/pixel_strength = -2.0
 
 [node name="player" type="CharacterBody3D"]
 script = ExtResource("1_8d4x2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_ih4k0")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_25ila")

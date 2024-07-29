@@ -1,22 +1,36 @@
 extends Node
 
-@onready var player_pos: Vector3 = Vector3(0, 0, 0)
+const DIRECTION: Array = ["N", "W", "S", "E"]
+const DIR_VECTOR: Dictionary = {
+								"N": Vector3(0, 0, -1), 
+								"W": Vector3(-1, 0, 0),
+								"S": Vector3(0, 0, 1),
+								"E": Vector3(1, 0, 0)
+								}
 
-func maze_generate(node: Node, width: int, height: int):
-	# Temp generation 
-	var _map: Array = []
-	for x in range(width):
-		_map.append([])
-		for y in range(height):
-			_map[x].append(0)
-	# Instantiate floors
-	for x in range(len(_map)):
-		for y in range(len(_map[x])):
-			if _map[x][y] == 0:
-				_add_floor(node, Vector3(0, 0, 0) + Vector3(x * 10, 0, y * -10), "floor.tscn")
+@onready var player_pos: Vector3 = Vector3(0, 0, 0) # Z axis need to be negative when use
+@onready var cur_direction: String = DIRECTION[0]
+@onready var cur_map: Array = []
+@onready var tile_length = LevelInit.tile_length
 
-func _add_floor(node: Node, pos: Vector3, type: String):
-	var floor = load("res://entities/environment/floor/" + type).instantiate()
-	floor.position = pos
-	node.add_child(floor)
+func get_map_info(map: Array):
+	cur_map = map
 
+func turn_direction(direction: int):
+	var _cur_index = DIRECTION.find(cur_direction)
+	if _cur_index + direction < 0:
+		cur_direction = DIRECTION[-1]
+	elif _cur_index + direction > len(DIRECTION) - 1:
+		cur_direction = DIRECTION[0]
+	else:
+		cur_direction = DIRECTION[_cur_index + direction]
+
+func move_player(direction: String):
+	# TODO: Detect walls
+	if direction == "forward":
+		player_pos += DIR_VECTOR[cur_direction]
+	elif direction == "backward":
+		player_pos -= DIR_VECTOR[cur_direction]
+	else:
+		print("unknown direction to move")
+	return player_pos * Vector3(tile_length, 1, tile_length)
