@@ -27,10 +27,22 @@ func turn_direction(direction: int):
 
 func move_player(direction: String):
 	# TODO: Detect walls
+	var _temp_pos: Vector3
 	if direction == "forward":
-		player_pos += DIR_VECTOR[cur_direction]
+		_temp_pos = player_pos + DIR_VECTOR[cur_direction]
+		if _check_is_passage(_temp_pos):
+			player_pos += DIR_VECTOR[cur_direction]
 	elif direction == "backward":
-		player_pos -= DIR_VECTOR[cur_direction]
+		_temp_pos = player_pos - DIR_VECTOR[cur_direction]
+		if _check_is_passage(_temp_pos):
+			player_pos -= DIR_VECTOR[cur_direction]
 	else:
 		print("unknown direction to move")
 	return player_pos * Vector3(tile_length, 1, tile_length)
+
+func _check_is_passage(pos: Vector3):
+	pos.z = pos.z * -1
+	if pos.x >= 0 and pos.x < len(cur_map) and pos.z >= 0 and pos.z < len(cur_map[0]) and cur_map[pos.x][pos.z] == 0: # 0 for temp floor type
+		return true
+	else:
+		return false

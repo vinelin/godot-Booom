@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 const ANGLE_ERROR: float = 0.01
 
-@export var speed: float = 0.4
+@export var speed: float = 40
 @onready var is_moving: bool = false
 @onready var destination_pos: Vector3 = Vector3(0, 0, 0)
 @onready var destination_rotation_y: float = self.rotation.y
@@ -17,7 +17,7 @@ func _physics_process(delta):
 	if is_moving:
 		# Stepping.
 		if self.position != destination_pos:
-			self.position = self.position.move_toward(destination_pos, speed)
+			self.position = self.position.move_toward(destination_pos, delta * speed)
 		# Rotating.
 		elif abs(abs(destination_rotation_y) - abs(self.rotation.y)) > ANGLE_ERROR and abs(abs(destination_rotation_y) - abs(self.rotation.y)) < PI:
 			self.rotate_y(cur_rotation * (abs(abs(destination_rotation_y) - abs(self.rotation.y))) * delta * 7)
