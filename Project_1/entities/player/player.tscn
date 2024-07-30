@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dmdvyspy6prrm"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_8d4x2"]
-[ext_resource type="PackedScene" uid="uid://fkt3vltjpyn7" path="res://entities/player/psx_first_person_arms.tscn" id="2_f7swo"]
+[ext_resource type="PackedScene" uid="uid://cccmnxi7mchbs" path="res://entities/player/psx_first_person_arms.tscn" id="2_f7swo"]
 [ext_resource type="Shader" path="res://shaders/CRT.gdshader" id="2_obkwn"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_25ila"]
