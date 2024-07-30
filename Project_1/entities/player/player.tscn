@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmdvyspy6prrm"]
+[gd_scene load_steps=8 format=3 uid="uid://dmdvyspy6prrm"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_8d4x2"]
+[ext_resource type="PackedScene" uid="uid://fkt3vltjpyn7" path="res://entities/player/psx_first_person_arms.tscn" id="2_f7swo"]
 [ext_resource type="Shader" path="res://shaders/CRT.gdshader" id="2_obkwn"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_25ila"]
@@ -41,6 +42,9 @@ visible = false
 mesh = SubResource("BoxMesh_pvf2p")
 
 [node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="PSX_First_Person_Arms" parent="Camera3D" instance=ExtResource("2_f7swo")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1.58557, 0.000464678)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
