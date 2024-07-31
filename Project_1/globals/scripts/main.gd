@@ -8,8 +8,10 @@ const DIR_VECTOR: Dictionary = {
 								"E": Vector3(1, 0, 0)
 								}
 
-@onready var player_pos: Vector3 = Vector3(0, 0, 0) # Z axis need to be negative when use
+@onready var player_pos: Vector3 # Z axis need to be negative when use
+@onready var camera_height: float = 2.0
 @onready var cur_direction: String = DIRECTION[0]
+@onready var cur_backward: String = DIRECTION[2]
 @onready var cur_map: Array = []
 @onready var tile_length = LevelInit.tile_length
 
@@ -24,25 +26,47 @@ func turn_direction(direction: int):
 		cur_direction = DIRECTION[0]
 	else:
 		cur_direction = DIRECTION[_cur_index + direction]
+	if DIRECTION.find(cur_direction) + 2 > len(DIRECTION) - 1:
+		cur_backward = DIRECTION[DIRECTION.find(cur_direction) - 2]
+	else:
+		cur_backward = DIRECTION[DIRECTION.find(cur_direction) + 2]
 
 func move_player(direction: String):
 	# TODO: Detect walls
 	var _temp_pos: Vector3
 	if direction == "forward":
 		_temp_pos = player_pos + DIR_VECTOR[cur_direction]
-		if _check_is_passage(_temp_pos):
+		if _check_is_passage(player_pos, _temp_pos, direction):
 			player_pos += DIR_VECTOR[cur_direction]
 	elif direction == "backward":
 		_temp_pos = player_pos - DIR_VECTOR[cur_direction]
-		if _check_is_passage(_temp_pos):
+		if _check_is_passage(player_pos, _temp_pos, direction):
 			player_pos -= DIR_VECTOR[cur_direction]
 	else:
 		print("unknown direction to move")
 	return player_pos * Vector3(tile_length, 1, tile_length)
 
-func _check_is_passage(pos: Vector3):
-	pos.z = pos.z * -1
-	if pos.x >= 0 and pos.x < len(cur_map) and pos.z >= 0 and pos.z < len(cur_map[0]) and cur_map[pos.x][pos.z] == 0: # 0 for temp floor type
-		return true
+func _check_is_passage(player_pos: Vector3, forward_pos: Vector3, direction: String):
+	player_pos.z = player_pos.z * -1
+	forward_pos.z = forward_pos.z * -1
+	if direction == "forward":
+		if (
+			forward_pos.x >= 0 and forward_pos.x < len(cur_map) and forward_pos.z >= 0 and forward_pos.z < len(cur_map[0]) 
+			and !cur_map[forward_pos.x][forward_pos.z].has_wall[(DIRECTION.find(cur_backward))]
+			and !cur_map[player_pos.x][player_pos.z].has_wall[DIRECTION.find(cur_direction)]
+		): 
+			return true
+		else:
+			return false
+	elif direction == "backward":
+		if (
+			forward_pos.x >= 0 and forward_pos.x < len(cur_map) and forward_pos.z >= 0 and forward_pos.z < len(cur_map[0]) 
+			and !cur_map[forward_pos.x][forward_pos.z].has_wall[(DIRECTION.find(cur_direction))]
+			and !cur_map[player_pos.x][player_pos.z].has_wall[DIRECTION.find(cur_backward)]
+		): 
+			return true
+		else:
+			return false
 	else:
+		print("unknown direction to move")
 		return false
