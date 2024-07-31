@@ -8,11 +8,10 @@ func _ready():
 func opening():
 	anim_player.play("display")
 	await anim_player.animation_finished
-	get_tree().change_scene_to_file("res://scenes/gui/main_menu/main_menu.tscn")
 	anim_player.play("disappear")
 	await anim_player.animation_finished
 	Music.play("bgm_manu.mp3", true)
-	self.queue_free()
+	get_tree().change_scene_to_file("res://scenes/gui/main_menu/main_menu.tscn")
 
 func change_scene(target: String):
 	pass
