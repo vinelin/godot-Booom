@@ -3,6 +3,7 @@ extends CharacterBody3D
 const ANGLE_ERROR: float = 0.01
 
 @export var speed: float = 40.0
+@onready var anim_player: AnimationPlayer = $CanvasLayer/Control/AnimationPlayer
 @onready var is_moving: bool = false
 @onready var cur_pos: Vector3 = Main.player_pos
 @onready var cur_rotation: int = 1
@@ -11,6 +12,7 @@ const ANGLE_ERROR: float = 0.01
 
 func _ready():
 	self.rotation.y = 0
+	anim_player.play("idle")
 
 func _process(delta):
 	if Input.is_action_pressed("move_backward"):
