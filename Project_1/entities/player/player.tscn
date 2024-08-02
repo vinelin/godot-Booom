@@ -1,13 +1,74 @@
-[gd_scene load_steps=12 format=3 uid="uid://dmdvyspy6prrm"]
+[gd_scene load_steps=11 format=3 uid="uid://dmdvyspy6prrm"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_8d4x2"]
-[ext_resource type="PackedScene" uid="uid://fkt3vltjpyn7" path="res://entities/player/psx_first_person_arms.tscn" id="2_f7swo"]
 [ext_resource type="Shader" path="res://shaders/CRT.gdshader" id="2_obkwn"]
 [ext_resource type="Texture2D" uid="uid://bdm37f7jk6xru" path="res://entities/player/panel_info/temp_portrait.png" id="4_c5f2v"]
 [ext_resource type="Texture2D" uid="uid://cafr7gbdqvpkv" path="res://entities/player/panel_info/temp_backpack.png" id="5_pi1bl"]
 [ext_resource type="Texture2D" uid="uid://de34q18hosa5s" path="res://entities/player/spritesheet/sword/sword_idle.png" id="6_yghrm"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_25ila"]
+
+[sub_resource type="Animation" id="Animation_75crw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CanvasLayer2/SpriteHand:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_yghrm")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CanvasLayer2/SpriteHand:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_b0hwe"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CanvasLayer2/SpriteHand:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_yghrm")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CanvasLayer2/SpriteHand:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_153i2"]
+_data = {
+"RESET": SubResource("Animation_75crw"),
+"idle": SubResource("Animation_b0hwe")
+}
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rrwot"]
 shader = ExtResource("2_obkwn")
@@ -26,68 +87,6 @@ shader_parameter/roll_speed = 1.0
 shader_parameter/scan_line_strength = -8.0
 shader_parameter/pixel_strength = -2.0
 
-[sub_resource type="Animation" id="Animation_b0hwe"]
-resource_name = "idle"
-length = 0.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../CanvasLayer/Control/SpriteHand:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("6_yghrm")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../CanvasLayer/Control/SpriteHand:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-
-[sub_resource type="Animation" id="Animation_75crw"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../CanvasLayer/Control/SpriteHand:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("6_yghrm")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../CanvasLayer/Control/SpriteHand:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_153i2"]
-_data = {
-"RESET": SubResource("Animation_75crw"),
-"idle": SubResource("Animation_b0hwe")
-}
-
 [node name="player" type="CharacterBody3D"]
 script = ExtResource("1_8d4x2")
 
@@ -96,14 +95,24 @@ mesh = SubResource("CapsuleMesh_25ila")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 
-[node name="PSX_First_Person_Arms" parent="Camera3D" instance=ExtResource("2_f7swo")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1.58557, 0.000464678)
-visible = false
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="SpriteHand" type="Sprite2D" parent="CanvasLayer2"]
+position = Vector2(928, 576)
+scale = Vector2(3.59375, 3.59375)
+texture = ExtResource("6_yghrm")
+hframes = 4
+
+[node name="PlayerAnimator" type="AnimationPlayer" parent="CanvasLayer2"]
+unique_name_in_owner = true
+root_node = NodePath("../../Camera3D")
+libraries = {
+"": SubResource("AnimationLibrary_153i2")
+}
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="CRT-Effect" type="ColorRect" parent="CanvasLayer"]
-visible = false
 material = SubResource("ShaderMaterial_rrwot")
 anchors_preset = 15
 anchor_right = 1.0
@@ -143,16 +152,16 @@ text = "W"
 layout_mode = 2
 text = "S"
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="UI" type="Control" parent="CanvasLayer"]
 layout_mode = 3
-anchors_preset = 2
-anchor_top = 1.0
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 40.0
-grow_vertical = 0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control"]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/UI"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -161,19 +170,19 @@ offset_top = -375.0
 offset_right = 670.0
 grow_vertical = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 35
 theme_override_constants/margin_top = 35
 theme_override_constants/margin_right = 35
 theme_override_constants/margin_bottom = 35
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Control/PanelContainer/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/UI/PanelContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/h_separation = 130
 columns = 2
 
-[node name="Img_Portrait" type="TextureRect" parent="CanvasLayer/Control/PanelContainer/MarginContainer/GridContainer"]
+[node name="Img_Portrait" type="TextureRect" parent="CanvasLayer/UI/PanelContainer/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -182,10 +191,10 @@ texture = ExtResource("4_c5f2v")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Control" type="Control" parent="CanvasLayer/Control/PanelContainer/MarginContainer/GridContainer"]
+[node name="Control" type="Control" parent="CanvasLayer/UI/PanelContainer/MarginContainer/GridContainer"]
 layout_mode = 2
 
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Control/PanelContainer/MarginContainer/GridContainer/Control"]
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/UI/PanelContainer/MarginContainer/GridContainer/Control"]
 layout_mode = 2
 anchor_left = -0.77
 anchor_top = 0.1
@@ -197,32 +206,20 @@ size_flags_horizontal = 0
 value = 100.0
 metadata/_edit_use_anchors_ = true
 
-[node name="Text_Name" type="RichTextLabel" parent="CanvasLayer/Control/PanelContainer/MarginContainer/GridContainer"]
+[node name="Text_Name" type="RichTextLabel" parent="CanvasLayer/UI/PanelContainer/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 40
 text = "巨山超力霸"
 metadata/_edit_use_anchors_ = true
 
-[node name="Img_Backpack" type="TextureRect" parent="CanvasLayer/Control/PanelContainer/MarginContainer/GridContainer"]
+[node name="Img_Backpack" type="TextureRect" parent="CanvasLayer/UI/PanelContainer/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 texture = ExtResource("5_pi1bl")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
-
-[node name="SpriteHand" type="Sprite2D" parent="CanvasLayer/Control"]
-position = Vector2(928, -464)
-scale = Vector2(3.59375, 3.59375)
-texture = ExtResource("6_yghrm")
-hframes = 4
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control"]
-root_node = NodePath("../../../Camera3D")
-libraries = {
-"": SubResource("AnimationLibrary_153i2")
-}
 
 [connection signal="pressed" from="CanvasLayer/CRT-Effect/VBoxContainer/HBoxContainer/btn_left" to="." method="_on_btn_left_pressed"]
 [connection signal="pressed" from="CanvasLayer/CRT-Effect/VBoxContainer/HBoxContainer/btn_right" to="." method="_on_btn_right_pressed"]

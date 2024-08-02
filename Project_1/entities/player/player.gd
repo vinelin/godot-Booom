@@ -3,7 +3,7 @@ extends CharacterBody3D
 const ANGLE_ERROR: float = 0.01
 
 @export var speed: float = 40.0
-@onready var anim_player: AnimationPlayer = $CanvasLayer/Control/AnimationPlayer
+@onready var anim_player: AnimationPlayer = %"PlayerAnimator"
 @onready var is_moving: bool = false
 @onready var cur_pos: Vector3 = Main.player_pos
 @onready var cur_rotation: int = 1
