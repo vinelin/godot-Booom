@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Project 1"
-run/main_scene="res://globals/transitions/scene_transition.tscn"
+run/main_scene="res://globals/transitions/opening.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
@@ -24,6 +24,7 @@ config/icon="res://icon.svg"
 Music="*res://globals/Music/music.tscn"
 Main="*res://globals/scripts/main.gd"
 LevelInit="*res://globals/scripts/level_init.gd"
+SceneTransition="*res://globals/transitions/scene_transition.tscn"
 
 [display]
 

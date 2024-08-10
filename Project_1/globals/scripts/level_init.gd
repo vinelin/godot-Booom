@@ -58,7 +58,8 @@ func _maze_generate(node: Node, width: int, height: int, init_x: int, init_y: in
 			cur_Node = cur_Node.prev_node
 			
 	# Test For Fun
-	_test_add_goal(node, map)
+	_test_add_goal(node, map, 1)
+	_add_enemies(node, map, 15)
 	
 	# Instantiate floors and walls
 	for x in range(len(map)):
@@ -86,7 +87,7 @@ func _add_wall(node: Node, pos: Vector3, type: String, rotation_y: float):
 	wall.rotation.y = rotation_y
 	node.add_child(wall)
 
-func _test_add_goal(node: Node, map: Array):
+func _test_add_goal(node: Node, map: Array, number_limit: int):
 	var _count: int = 0
 	for x in range(len(map)):
 		for y in range(len(map[x])):
@@ -95,11 +96,29 @@ func _test_add_goal(node: Node, map: Array):
 				var goal = load("res://entities/environment/goal_test.tscn").instantiate()
 				goal.position = Vector3(x, 2, -y) * Vector3(tile_length, 1, tile_length)
 				node.add_child(goal)
+				_count += 1
 				break
+		if _count >= number_limit:
+			break
+
+func _add_enemies(node: Node, map: Array, number_limit: int):
+	var _count: int = 0
+	for x in range(len(map)):
+		for y in range(len(map[x])):
+			if map[x][y].has_wall.count(true) == 2 and randi_range(1,10) < 4:
+				map[x][y].tile_type = "enemy" #no need if enemy can move
+				var enemy = load("res://entities/enemies/enemy_test/enemy_test.tscn").instantiate()
+				enemy.position = Vector3(x, 2, -y) * Vector3(tile_length, 1, tile_length)
+				node.add_child(enemy)
+				_count += 1
+				break
+		if _count >= number_limit:
+			break
 
 func _add_player(node: Node, pos: Vector3):
 	var player = load("res://entities/player/player.tscn").instantiate()
 	player.position = pos
+	Main.player = player
 	node.add_child(player)
 
 func _check_neighbor_status(node: Node, map: Array, width: int, height: int):

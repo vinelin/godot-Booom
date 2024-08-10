@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmfgef0r4xaf5"]
+
+[ext_resource type="Script" path="res://entities/enemies/enemy_test/enemy_test.gd" id="1_b2kj5"]
+[ext_resource type="Texture2D" uid="uid://d2xnxuqq1i2t6" path="res://entities/enemies/enemy_test/temp_enemy.png" id="1_l53fi"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xa1i2"]
+size = Vector3(6, 7.5, 6)
+
+[node name="enemy_test" type="CharacterBody3D"]
+script = ExtResource("1_b2kj5")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+billboard = 1
+texture = ExtResource("1_l53fi")
+
+[node name="e_test" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="e_test"]
+shape = SubResource("BoxShape3D_xa1i2")

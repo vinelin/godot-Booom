@@ -7,13 +7,31 @@ const DIR_VECTOR: Dictionary = {
 								"S": Vector3(0, 0, 1),
 								"E": Vector3(1, 0, 0)
 								}
+								
+const DEFENSE_DIRECTION: Array = ["up", "left", "right"]
 
+# Map info
+@onready var cur_map: Array = []
+@onready var tile_length = LevelInit.tile_length
+
+# Player pos
+@onready var player: Node
 @onready var player_pos: Vector3 # Z axis need to be negative when use
 @onready var camera_height: float = 2.0
 @onready var cur_direction: String = DIRECTION[0]
 @onready var cur_backward: String = DIRECTION[2]
-@onready var cur_map: Array = []
-@onready var tile_length = LevelInit.tile_length
+
+# Player status
+@onready var max_health: float = 100.0
+@onready var attack_damage: float = 10.0
+@onready var cur_health: float = max_health
+@onready var is_in_battle: bool = false
+@onready var can_defense: bool = false
+
+# Enemy
+@onready var cur_enemy: Node
+@onready var attack_direction: String
+@onready var enemy_damage: float
 
 func get_map_info(map: Array):
 	cur_map = map
@@ -68,5 +86,19 @@ func _check_is_passage(player_pos: Vector3, forward_pos: Vector3, direction: Str
 		else:
 			return false
 	else:
-		print("unknown direction to move")
+		print("unknown direction to move: " + direction)
 		return false
+
+func enemy_attack(damage: float):
+	enemy_damage = damage
+	attack_direction = DEFENSE_DIRECTION.pick_random()
+	print(attack_direction)
+	var animP: AnimationPlayer = player.anim_player_def
+	animP.play(attack_direction)
+	player.defense_timer.start()
+	can_defense = true
+
+func player_damaged():
+	cur_health -= enemy_damage
+	var animP: AnimationPlayer = player.anim_player_def
+	animP.play("damaged")

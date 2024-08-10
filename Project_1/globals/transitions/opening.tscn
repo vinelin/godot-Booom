@@ -1,16 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://cba6fek7yeg4b"]
+[gd_scene load_steps=7 format=3 uid="uid://dr8fh0lq63ey"]
 
-[ext_resource type="Script" path="res://globals/transitions/scene_transition.gd" id="1_cgjt6"]
+[ext_resource type="Script" path="res://globals/transitions/opening.gd" id="1_1sa07"]
+[ext_resource type="Texture2D" uid="uid://cfkwdbrpt5f6l" path="res://globals/transitions/logo_studio.png" id="2_dsm1n"]
 
 [sub_resource type="Animation" id="Animation_x7hi7"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MarginContainer/ColorRect:color")
+tracks/0/path = NodePath("MarginContainer/TextureRect:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer/ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -19,15 +32,27 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_68ky2"]
 resource_name = "disappear"
-length = 0.5
+length = 1.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MarginContainer/ColorRect:color")
+tracks/0/path = NodePath("MarginContainer/TextureRect:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer/ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1, 1.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
@@ -35,18 +60,17 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_gxwyl"]
 resource_name = "display"
-length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MarginContainer/ColorRect:color")
+tracks/0/path = NodePath("MarginContainer/TextureRect:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2xvlp"]
@@ -56,8 +80,8 @@ _data = {
 "display": SubResource("Animation_gxwyl")
 }
 
-[node name="scene_transition" type="CanvasLayer"]
-script = ExtResource("1_cgjt6")
+[node name="opening" type="CanvasLayer"]
+script = ExtResource("1_1sa07")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -69,6 +93,13 @@ grow_vertical = 2
 [node name="ColorRect" type="ColorRect" parent="MarginContainer"]
 layout_mode = 2
 color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_dsm1n")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
