@@ -25,6 +25,7 @@ Music="*res://globals/Music/music.tscn"
 Main="*res://globals/scripts/main.gd"
 LevelInit="*res://globals/scripts/level_init.gd"
 SceneTransition="*res://globals/transitions/scene_transition.tscn"
+EventCenter="*res://scripts/EventCenter.gd"
 
 [display]
 
