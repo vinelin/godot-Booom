@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b3pqjslgek7v3"]
 
 [ext_resource type="Script" path="res://scenes/gui/main_menu/main_menu.gd" id="1_mug8p"]
-[ext_resource type="AudioStream" uid="uid://dhgv062lv8scl" path="res://sfx_pressed.mp3" id="2_wacxx"]
+[ext_resource type="AudioStream" uid="uid://dhgv062lv8scl" path="res://globals/sfx/sfx_pressed.mp3" id="2_wacxx"]
 [ext_resource type="PackedScene" uid="uid://c4ncpfggwnyia" path="res://scenes/gui/options_menu/options_menu.tscn" id="3_ec1wh"]
 [ext_resource type="PackedScene" uid="uid://jyhajv3njygj" path="res://scenes/gui/quit_menu/quit_menu.tscn" id="4_y046p"]
 
@@ -34,7 +34,7 @@ alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 60
 text = "Name"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -47,17 +47,17 @@ theme_override_constants/separation = 10
 
 [node name="btn_play" type="Button" parent="MarginContainer/VBoxContainer/VBoxButtons"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 40
 text = "Play"
 
 [node name="btn_options" type="Button" parent="MarginContainer/VBoxContainer/VBoxButtons"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 40
 text = "Options"
 
 [node name="btn_quit" type="Button" parent="MarginContainer/VBoxContainer/VBoxButtons"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 40
 text = "Quit"
 
 [node name="sfx_pressed" type="AudioStreamPlayer" parent="MarginContainer/VBoxContainer/VBoxButtons"]

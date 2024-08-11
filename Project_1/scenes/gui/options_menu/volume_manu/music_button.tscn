@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8ryh354qbda"]
+
+[ext_resource type="PackedScene" uid="uid://daf7dix5t1nos" path="res://scenes/gui/options_menu/volume_manu/options_volume_button.tscn" id="1_ijrje"]
+[ext_resource type="Script" path="res://scenes/gui/options_menu/volume_manu/music_button.gd" id="2_j30mt"]
+
+[node name="Music_Button" instance=ExtResource("1_ijrje")]
+script = ExtResource("2_j30mt")
+
+[node name="Label" parent="HBoxContainer" index="0"]
+text = "MUSIC"

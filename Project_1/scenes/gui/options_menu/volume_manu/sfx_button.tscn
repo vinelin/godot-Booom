@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbcisscoewnt7"]
+
+[ext_resource type="PackedScene" uid="uid://daf7dix5t1nos" path="res://scenes/gui/options_menu/volume_manu/options_volume_button.tscn" id="1_hxojh"]
+[ext_resource type="Script" path="res://scenes/gui/options_menu/volume_manu/sfx_button.gd" id="2_q4agc"]
+
+[node name="sfx_Button" instance=ExtResource("1_hxojh")]
+script = ExtResource("2_q4agc")
+
+[node name="Label" parent="HBoxContainer" index="0"]
+text = "SFX"

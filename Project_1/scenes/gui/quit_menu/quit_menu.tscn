@@ -11,46 +11,54 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_65xpw")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 300.0
-offset_top = 150.0
-offset_right = -302.0
-offset_bottom = -168.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 600
+theme_override_constants/margin_top = 300
+theme_override_constants/margin_right = 600
+theme_override_constants/margin_bottom = 300
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+layout_mode = 2
 color = Color(0.847805, 0.572518, 0.594904, 1)
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 420.0
-offset_top = 270.0
-offset_right = 729.0
-offset_bottom = 312.0
-theme_override_font_sizes/font_size = 30
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 128
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
 text = "Are you sure to quit ?"
 horizontal_alignment = 1
 
-[node name="btn_yes" type="Button" parent="."]
-layout_mode = 0
-offset_left = 450.0
-offset_top = 360.0
-offset_right = 513.0
-offset_bottom = 396.0
-theme_override_font_sizes/font_size = 20
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 128
+alignment = 1
+
+[node name="btn_yes" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
 text = "  YES  "
 
-[node name="btn_no" type="Button" parent="."]
-layout_mode = 0
-offset_left = 630.0
-offset_top = 360.0
-offset_right = 693.0
-offset_bottom = 396.0
-theme_override_font_sizes/font_size = 20
+[node name="btn_no" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
 text = "  NO  "
 
-[connection signal="pressed" from="btn_yes" to="." method="_on_btn_yes_pressed"]
-[connection signal="pressed" from="btn_no" to="." method="_on_btn_no_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/btn_yes" to="." method="_on_btn_yes_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/btn_no" to="." method="_on_btn_no_pressed"]

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://drtopca4bflsb"]
+
+[ext_resource type="PackedScene" uid="uid://daf7dix5t1nos" path="res://scenes/gui/options_menu/volume_manu/options_volume_button.tscn" id="1_ucmkh"]
+[ext_resource type="Script" path="res://scenes/gui/options_menu/volume_manu/volume_button.gd" id="2_qcc1c"]
+
+[node name="Volume_Button" instance=ExtResource("1_ucmkh")]
+script = ExtResource("2_qcc1c")
+
+[node name="Label" parent="HBoxContainer" index="0"]
+text = "VOLUME"
