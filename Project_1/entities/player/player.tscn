@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cafr7gbdqvpkv" path="res://entities/player/panel_info/temp_backpack.png" id="5_pi1bl"]
 [ext_resource type="Texture2D" uid="uid://om5qlsi0vdnm" path="res://entities/player/defense_indicator.png" id="6_k7k7b"]
 [ext_resource type="Texture2D" uid="uid://de34q18hosa5s" path="res://entities/player/spritesheet/sword/sword_idle.png" id="6_yghrm"]
-[ext_resource type="Script" path="res://scripts/FSM/StateMacine.gd" id="7_v6hqg"]
+[ext_resource type="Script" path="res://globals/scripts/FSM/StateMacine.gd" id="7_v6hqg"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_25ila"]
 

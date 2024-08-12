@@ -24,18 +24,19 @@ func on_enter()->void:
 	current_state.on_enter()
 	
 func _process(delta: float) -> void:
-	current_state.on_update(delta)
+	if current_state != null:
+		current_state.on_update(delta)
 	
 func on_exit()->void:
 	current_state.on_exit()
 
 func change_state(new_state_name:String)->bool:
 	var new_state = states.get(new_state_name)
-	if new_state == null:
-		printerr("状态不存在")
+	if new_state != null and new_state.condition():
+		current_state.on_exit()
+		current_state = new_state
+		current_state.on_enter()
+		return true
+	else:
+		printerr("状态不存在 或者 条件不满足",)
 		return false
-	current_state.on_exit()
-	current_state = new_state
-	current_state.on_enter()
-	return true
-	

@@ -17,4 +17,5 @@ func on_update(delta:float)->void:
 func on_exit()->void:
 	pass
 	
-# todo 切换condition
+func condition()->bool:
+	return true
