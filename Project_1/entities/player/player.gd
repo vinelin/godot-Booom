@@ -15,6 +15,7 @@ const ANGLE_ERROR: float = 0.01
 @onready var anim_player_def: AnimationPlayer = $CanvasLayer/DefenseIndicator/AnimationPlayer
 @onready var health_bar: ProgressBar = $CanvasLayer/UI/PanelContainer/MarginContainer/GridContainer/Control/ProgressBar
 @onready var defense_timer: Timer = $DefenseTimer
+@onready var state_machine:StateMacine = $StateMacine;
 
 func _ready():
 	self.rotation.y = 0
@@ -23,6 +24,8 @@ func _ready():
 	health_bar.value = Main.cur_health
 	EventCenter.GameStateChange.connect(on_game_state_change)
 	on_game_state_change(Global.game_state)
+	state_machine.start("idle",self)
+	
 
 func _process(_delta):
 	match Global.game_state:

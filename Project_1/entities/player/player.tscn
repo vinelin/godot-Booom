@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dmdvyspy6prrm"]
+[gd_scene load_steps=24 format=3 uid="uid://dmdvyspy6prrm"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_8d4x2"]
 [ext_resource type="Shader" path="res://shaders/CRT.gdshader" id="2_obkwn"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://om5qlsi0vdnm" path="res://entities/player/defense_indicator.png" id="6_k7k7b"]
 [ext_resource type="Texture2D" uid="uid://de34q18hosa5s" path="res://entities/player/spritesheet/sword/sword_idle.png" id="6_yghrm"]
 [ext_resource type="Script" path="res://globals/scripts/FSM/StateMacine.gd" id="7_v6hqg"]
+[ext_resource type="Script" path="res://globals/scripts/FSM/DefendState.gd" id="8_jcgvs"]
+[ext_resource type="Script" path="res://globals/scripts/FSM/IdleState.gd" id="8_lgu1b"]
+[ext_resource type="Script" path="res://globals/scripts/FSM/RoundOverState.gd" id="9_d1c7r"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_25ila"]
 
@@ -478,6 +481,15 @@ one_shot = true
 
 [node name="StateMacine" type="Node" parent="."]
 script = ExtResource("7_v6hqg")
+
+[node name="Idle" type="Node" parent="StateMacine"]
+script = ExtResource("8_lgu1b")
+
+[node name="Defend" type="Node" parent="StateMacine"]
+script = ExtResource("8_jcgvs")
+
+[node name="RoundOver" type="Node" parent="StateMacine"]
+script = ExtResource("9_d1c7r")
 
 [connection signal="pressed" from="CanvasLayer/CRT-Effect/VBoxContainer/HBoxContainer/btn_left" to="." method="_on_btn_left_pressed"]
 [connection signal="pressed" from="CanvasLayer/CRT-Effect/VBoxContainer/HBoxContainer/btn_right" to="." method="_on_btn_right_pressed"]
